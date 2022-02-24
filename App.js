@@ -18,7 +18,9 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <CustomText>Open up App.js to start working on your app!</CustomText>
+      <CustomText body bold blue>
+        Open up App.js to start working on your app!
+      </CustomText>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
