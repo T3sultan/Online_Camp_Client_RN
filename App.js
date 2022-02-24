@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
+import { Colors, Metrics } from "./src/theme";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -15,12 +16,16 @@ export default function App() {
   // }
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={{ fontFamily: "EncodedSansBold" }}>
         Open up App.js to start working on your app!
       </Text>
+      <View style={{ margin: Metrics.base, fontFamily: "MontserratRegular" }}>
+        <Text style={{ color: Colors.primary }}>text</Text>
+      </View>
+
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
