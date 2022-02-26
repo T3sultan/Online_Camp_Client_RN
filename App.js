@@ -4,6 +4,7 @@ import { useFonts } from "@use-expo/font";
 import { AppLoading } from "expo";
 import { Colors, Metrics } from "./src/theme";
 import CustomText from "./src/common/CustomText";
+import RootNavigation from "./src/navigation/RootNavigation";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -16,14 +17,7 @@ export default function App() {
   // //   return <AppLoading />;
   // // }
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <CustomText body bold blue>
-        Open up App.js to start working on your app!
-      </CustomText>
-      <StatusBar style="auto" />
-    </SafeAreaView>
-  );
+  return <RootNavigation />;
 }
 
 const styles = StyleSheet.create({
