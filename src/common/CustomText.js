@@ -44,6 +44,7 @@ const CustomText = props => {
     fwBold,
     lh,
     style,
+    black,
   } = props;
   return (
     <RNText
@@ -66,6 +67,7 @@ const CustomText = props => {
         baseBold && { fontFamily: Fonts.type.baseBold },
 
         //color
+        black && { color: Colors.black },
         primary && { color: Colors.primary },
         lightGrey && { color: Colors.lightGrey },
         darkGrey && { color: Colors.darkGrey },

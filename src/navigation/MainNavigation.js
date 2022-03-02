@@ -13,7 +13,7 @@ import AppNavigation from "./AppNavigation";
 const Stack = createNativeStackNavigator();
 
 export default function MainNavigation() {
-  const [userToken, setUserToken] = useState("home");
+  const [userToken, setUserToken] = useState(null);
 
   const isLoading = false;
 

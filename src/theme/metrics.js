@@ -8,6 +8,7 @@ const metrics = {
   base: scale(20),
   halfBase: scale(10),
   doubleBase: scale(40),
+  regular: scale(50),
   screenWidth: width,
   screenHeight: height,
 };

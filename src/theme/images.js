@@ -6,5 +6,7 @@ const images = {
   profileInActive: require("../../assets/icons/person_none.png"),
   profileActive: require("../../assets/icons/person.png"),
   add: require("../../assets/icons/add_circle.png"),
+  login: require("../../assets/imagesfile/login.png"),
+  register: require("../../assets/imagesfile/register.png"),
 };
 export default images;

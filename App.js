@@ -13,9 +13,9 @@ export default function App() {
     MontserratBold: require("./assets/fonts/Montserrat-Bold.ttf"),
     MontserratRegular: require("./assets/fonts/Montserrat-Regular.ttf"),
   });
-  // // if (!fontsLoaded) {
-  // //   return <AppLoading />;
-  // // }
+  // if (!fontsLoaded) {
+  //   return <AppLoading />;
+  // }
 
   return <RootNavigation />;
 }
