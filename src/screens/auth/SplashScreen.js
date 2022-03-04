@@ -1,4 +1,4 @@
-import { Image, StatusBar, StyleSheet, Text, View } from "react-native";
+import { Image, StatusBar, StyleSheet, View } from "react-native";
 import React from "react";
 import { Colors, Images, Metrics } from "../../theme";
 
@@ -21,8 +21,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   logoStyle: {
-    // width: Metrics.screenWidth,
-    // height: Metrics.screenHeight,
     width: Metrics.splashWidth,
     height: Metrics.splashHeight,
   },

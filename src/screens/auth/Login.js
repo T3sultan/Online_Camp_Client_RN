@@ -1,13 +1,5 @@
-import {
-  Button,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import React from "react";
-import CustomInput from "../../common/Input";
 import cs from "../../theme/commonstyle";
 import { Colors, Images, Metrics } from "../../theme";
 import { Formik } from "formik";
@@ -27,7 +19,7 @@ const validationSchema = Yup.object().shape({
 
 export default function Login({ navigation }) {
   return (
-    <View style={cs.container}>
+    <View style={[cs.container]}>
       <Image source={Images.login} style={styles.imageStyle} />
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -95,15 +87,15 @@ const styles = StyleSheet.create({
   imageStyle: {
     width: "100%",
     marginTop: -140,
+    margin: Metrics.halfBase,
   },
   formWrapper: {
     marginTop: -60,
+    margin: Metrics.halfBase,
   },
   footer: {
     flex: 1,
     justifyContent: "flex-end",
     paddingBottom: Metrics.base,
-    margin: Metrics.start,
-    // justifyContent: "center",
   },
 });

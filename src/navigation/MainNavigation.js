@@ -27,12 +27,7 @@ export default function MainNavigation() {
     <NativeBaseProvider>
       <NavigationContainer>
         <SafeAreaView style={{ flex: 1 }}>
-          <StatusBar
-            backgroundColor={Colors.border}
-            // barStyle={
-            //   platform.os === "android" ? "light-content" : "dark-content"
-            // }
-          />
+          <StatusBar backgroundColor={Colors.border} />
           <Stack.Navigator>
             {showSplashScreen ? (
               <Stack.Screen
