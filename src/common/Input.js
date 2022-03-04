@@ -1,8 +1,7 @@
 import { StyleSheet, Text, View, TextInput } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import CustomText from "./CustomText";
 import { Colors, Fonts, Metrics } from "../theme";
-// import { Input, Label, Icon, Item } from "native-base";
 
 export default function FormInput({
   placeholder,
@@ -17,22 +16,41 @@ export default function FormInput({
   multiline,
   textStyle,
 }) {
+  const [borderColor, setBorderColor] = useState(Colors.lightGrey);
+
+  const onFocus = () => {
+    setBorderColor(Colors.darkGrey);
+  };
+
   return (
-    <View style={styles.container}>
-      {/* <CustomText>{placeholder}</CustomText> */}
-      {/* <View style={styles.wrapper}> */}
-      <TextInput
-        placeholder={placeholder}
-        onChangeText={formikProps.handleChange(formikKey)}
-        autoCapitalize={autoCapitalize}
-        autoCompleteType={autoCompleteType}
-        autoCorrect={false}
-        secureTextEntry={secureTextEntry}
-        value={formikProps.values[formikKey]}
-        style={[styles.label, { color: Colors.darkGrey }, textStyle]}
-        multiline={multiline}
-      />
-      {/* </View> */}
+    <View>
+      <View style={[styles.container]}>
+        <View style={[{ borderColor }]} floatingLabel>
+          <TextInput
+            placeholder={placeholder}
+            onChangeText={formikProps.handleChange(formikKey)}
+            autoCapitalize={autoCapitalize}
+            autoCompleteType={autoCompleteType}
+            autoCorrect={false}
+            secureTextEntry={secureTextEntry}
+            value={formikProps.values[formikKey]}
+            style={[styles.label, { color: Colors.darkGrey }, textStyle]}
+            multiline={multiline}
+            onFocus={onFocus}
+            onBlur={() => {
+              formikProps.setFieldTouched(formikKey, true);
+              setBorderColor(Colors.lightGrey);
+            }}
+          />
+        </View>
+      </View>
+      <View style={styles.errorType}>
+        {formikProps.touched[formikKey] && formikProps.errors[formikKey] && (
+          <CustomText style={[styles.label, styles.error]}>
+            {formikProps.errors[formikKey]}
+          </CustomText>
+        )}
+      </View>
     </View>
   );
 }
@@ -42,7 +60,7 @@ const styles = StyleSheet.create({
     height: Metrics.doubleBase,
     borderColor: Colors.white,
     borderWidth: 0.5,
-    marginTop: 5,
+    marginTop: 20,
     justifyContent: "center",
     padding: Metrics.halfBase,
     shadowOpacity: 0.2,
@@ -60,5 +78,8 @@ const styles = StyleSheet.create({
     color: Colors.lightGrey,
     fontSize: Fonts.size.body,
     fontFamily: Fonts.type.base,
+  },
+  errorType: {
+    marginLeft: Metrics.halfBase,
   },
 });

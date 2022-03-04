@@ -1,12 +1,20 @@
-import { Button, Image, StyleSheet, Text, View } from "react-native";
+import {
+  Button,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React from "react";
 import CustomInput from "../../common/Input";
 import cs from "../../theme/commonstyle";
-import { Images, Metrics } from "../../theme";
+import { Colors, Images, Metrics } from "../../theme";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import TextInput from "../../common/Input";
 import CustomText from "../../common/CustomText";
+import CustomButton from "../../common/CustomButton";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -23,6 +31,9 @@ export default function Login() {
       <Image source={Images.login} style={styles.imageStyle} />
       <Formik
         initialValues={{ email: "", password: "" }}
+        onSubmit={(values, action) => {
+          console.log({ values });
+        }}
         validationSchema={validationSchema}
       >
         {formikProps => {
@@ -35,8 +46,8 @@ export default function Login() {
                   alignItems: "center",
                 }}
               >
-                <CustomText midGrey jumbo style={{}}>
-                  Login
+                <CustomText baseBold midGrey jumbo style={{}}>
+                  LOGIN
                 </CustomText>
               </View>
 
@@ -53,10 +64,25 @@ export default function Login() {
                 formikKey={"password"}
                 secureTextEntry={true}
               />
+              <CustomButton
+                onPress={formikProps.handleSubmit}
+                style={{ marginTop: Metrics.header }}
+                title="Login"
+              />
             </View>
           );
         }}
       </Formik>
+      <View style={styles.footer}>
+        <TouchableOpacity onPress={() => {}}>
+          <CustomText base subHeader fw600 centered>
+            Don't have an account?
+            <CustomText base fw600 subHeader centered primary>
+              Sign up
+            </CustomText>
+          </CustomText>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -67,7 +93,12 @@ const styles = StyleSheet.create({
     marginTop: -140,
   },
   formWrapper: {
-    marginHorizontal: Metrics.halfBase,
     marginTop: -60,
+  },
+  footer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    paddingBottom: Metrics.base,
+    // justifyContent: "center",
   },
 });
