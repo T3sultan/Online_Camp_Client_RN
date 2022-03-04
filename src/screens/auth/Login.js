@@ -6,6 +6,7 @@ import { Images, Metrics } from "../../theme";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import TextInput from "../../common/Input";
+import CustomText from "../../common/CustomText";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -27,8 +28,20 @@ export default function Login() {
         {formikProps => {
           return (
             <View style={styles.formWrapper}>
+              <View
+                style={{
+                  marginTop: -50,
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <CustomText midGrey jumbo style={{}}>
+                  Login
+                </CustomText>
+              </View>
+
               <TextInput
-                placeholder="Email"
+                placeholder="Email Address"
                 formikProps={formikProps}
                 formikKey={"email"}
                 autoCapitalize="none"
@@ -40,16 +53,6 @@ export default function Login() {
                 formikKey={"password"}
                 secureTextEntry={true}
               />
-
-              {/* {formikProps.isSubmitting ? (
-                <Loading />
-              ) : (
-                <Button
-                  onPress={formikProps.handleSubmit}
-                  style={{ margin: Metrics.doubleBase }}
-                  title="Login"
-                />
-              )} */}
             </View>
           );
         }}
@@ -61,9 +64,10 @@ export default function Login() {
 const styles = StyleSheet.create({
   imageStyle: {
     width: "100%",
+    marginTop: -140,
   },
-  wrapper: {
-    marginTop: Metrics.double,
-    marginHorizontal: Metrics.base,
+  formWrapper: {
+    marginHorizontal: Metrics.halfBase,
+    marginTop: -60,
   },
 });

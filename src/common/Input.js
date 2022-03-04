@@ -19,8 +19,10 @@ export default function FormInput({
 }) {
   return (
     <View style={styles.container}>
-      <CustomText>{placeholder}</CustomText>
+      {/* <CustomText>{placeholder}</CustomText> */}
+      {/* <View style={styles.wrapper}> */}
       <TextInput
+        placeholder={placeholder}
         onChangeText={formikProps.handleChange(formikKey)}
         autoCapitalize={autoCapitalize}
         autoCompleteType={autoCompleteType}
@@ -30,23 +32,33 @@ export default function FormInput({
         style={[styles.label, { color: Colors.darkGrey }, textStyle]}
         multiline={multiline}
       />
+      {/* </View> */}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
-    marginBottom: Metrics.doubleBase,
+  container: {
+    height: Metrics.doubleBase,
+    borderColor: Colors.white,
+    borderWidth: 0.5,
+    marginTop: 5,
+    justifyContent: "center",
+    padding: Metrics.halfBase,
+    shadowOpacity: 0.2,
+    shadowOffset: {
+      height: 0,
+      width: 0,
+    },
+    elevation: 1,
   },
-
+  error: {
+    color: Colors.error,
+    fontSize: Fonts.size.caption,
+  },
   label: {
     color: Colors.lightGrey,
     fontSize: Fonts.size.body,
     fontFamily: Fonts.type.base,
-  },
-
-  error: {
-    color: Colors.error,
-    fontSize: Fonts.size.caption,
   },
 });
