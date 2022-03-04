@@ -14,8 +14,14 @@ const Stack = createNativeStackNavigator();
 
 export default function MainNavigation() {
   const [userToken, setUserToken] = useState(null);
+  const [showSplashScreen, setShowSplashScreen] = useState(true);
 
-  const isLoading = false;
+  // const isLoading = true;
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSplashScreen(false);
+    }, 3000);
+  }, []);
 
   return (
     <NativeBaseProvider>
@@ -28,8 +34,14 @@ export default function MainNavigation() {
             // }
           />
           <Stack.Navigator>
-            {isLoading ? (
-              <Stack.Screen name="splash" component={SplashScreen} />
+            {showSplashScreen ? (
+              <Stack.Screen
+                name="splash"
+                component={SplashScreen}
+                options={{
+                  headerShown: false,
+                }}
+              />
             ) : userToken === null ? (
               <Stack.Screen
                 options={{

@@ -15,6 +15,8 @@ const metrics = {
   screenHeight: height,
   btnHeight: scale(40),
   btnBorderRadius: scale(20),
+  splashWidth: scale(300),
+  splashHeight: scale(300),
 };
 
 export default metrics;
