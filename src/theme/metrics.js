@@ -7,6 +7,7 @@ const metrics = {
   start: scale(5),
   header: scale(60),
   base: scale(20),
+  baseDouble: scale(30),
   halfBase: scale(10),
   doubleBase: scale(40),
   regular: scale(50),

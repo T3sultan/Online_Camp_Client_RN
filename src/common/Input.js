@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     height: Metrics.doubleBase,
     borderColor: Colors.white,
     borderWidth: 0.5,
-    marginTop: 20,
+    marginTop: 10,
     justifyContent: "center",
     padding: Metrics.halfBase,
     shadowOpacity: 0.2,

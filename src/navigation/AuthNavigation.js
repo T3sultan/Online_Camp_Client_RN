@@ -19,8 +19,17 @@ const AuthNavigation = () => {
       />
       <Stack.Screen
         options={{
-          headerShown: false,
+          headerStyle: {
+            shadowOffset: {
+              height: 0,
+            },
+          },
+          headerTitleAlign: "center",
+          headerBackTitleVisible: false,
         }}
+        // options={{
+        //   headerShown: false,
+        // }}
         name="Register"
         component={Register}
       />

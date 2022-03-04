@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
   password: Yup.string().label("Password").required("Password field is empty"),
 });
 
-export default function Login() {
+export default function Login({ navigation }) {
   return (
     <View style={cs.container}>
       <Image source={Images.login} style={styles.imageStyle} />
@@ -74,10 +74,14 @@ export default function Login() {
         }}
       </Formik>
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => {}}>
-          <CustomText base subHeader fw600 centered>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Register");
+          }}
+        >
+          <CustomText base body fw600 centered>
             Don't have an account?
-            <CustomText base fw600 subHeader centered primary>
+            <CustomText base fw600 body centered primary>
               Sign up
             </CustomText>
           </CustomText>
@@ -99,6 +103,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "flex-end",
     paddingBottom: Metrics.base,
+    margin: Metrics.start,
     // justifyContent: "center",
   },
 });
