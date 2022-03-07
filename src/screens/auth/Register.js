@@ -13,18 +13,20 @@ import * as Yup from "yup";
 import TextInput from "../../common/Input";
 import CustomText from "../../common/CustomText";
 import CustomButton from "../../common/CustomButton";
+import API from "../../api";
 
 const validationSchema = Yup.object().shape({
+  name: Yup.string().label("Name").required("Name field is empty"),
   email: Yup.string()
     .trim()
     .label("Email")
     .email()
     .required("Email field is empty"),
-  name: Yup.string().label("Name").required("Name field is empty"),
-  password: Yup.string().label("Password").required("Password field is empty"),
-  confirmPassword: Yup.string()
-    .label("ConfirmPassword")
-    .required("Confirm Password field is empty"),
+  password: Yup.string()
+    .label("Password")
+    .required("Password field is empty")
+    .min(8, "Too short Pass"),
+  bio: Yup.string().label("bio").required("Bio field is empty"),
 });
 
 export default function Register({ navigation }) {
@@ -37,10 +39,17 @@ export default function Register({ navigation }) {
             name: "",
             email: "",
             password: "",
-            confirmPassword: "",
+            bio: "",
           }}
-          onSubmit={(values, action) => {
+          onSubmit={async (values, action) => {
             console.log({ values });
+            const registerURL = "auth/register";
+            try {
+              let res = await API.post(registerURL, values);
+              console.log("res ", res);
+            } catch (err) {
+              console.log("err ", err.response);
+            }
           }}
           validationSchema={validationSchema}
         >
@@ -79,10 +88,9 @@ export default function Register({ navigation }) {
                   secureTextEntry={true}
                 />
                 <TextInput
-                  placeholder="Confirm Password"
+                  placeholder="Short bio"
                   formikProps={formikProps}
-                  formikKey={"password"}
-                  secureTextEntry={true}
+                  formikKey={"bio"}
                 />
                 <CustomButton
                   onPress={formikProps.handleSubmit}
