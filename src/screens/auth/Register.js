@@ -14,6 +14,7 @@ import TextInput from "../../common/Input";
 import CustomText from "../../common/CustomText";
 import CustomButton from "../../common/CustomButton";
 import API from "../../api";
+import CustomLoading from "../../common/CustomLoading";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().label("Name").required("Name field is empty"),
@@ -43,12 +44,15 @@ export default function Register({ navigation }) {
           }}
           onSubmit={async (values, action) => {
             console.log({ values });
+            action.setSubmitting(true);
             const registerURL = "auth/register";
             try {
               let res = await API.post(registerURL, values);
+              action.setSubmitting(false);
               console.log("res ", res.data);
             } catch (err) {
               console.log("err ", err.response);
+              action.setSubmitting(false);
             }
           }}
           validationSchema={validationSchema}
@@ -92,11 +96,15 @@ export default function Register({ navigation }) {
                   formikProps={formikProps}
                   formikKey={"bio"}
                 />
-                <CustomButton
-                  onPress={formikProps.handleSubmit}
-                  style={{ marginTop: Metrics.base }}
-                  title="Register"
-                />
+                {formikProps.isSubmitting ? (
+                  <CustomLoading />
+                ) : (
+                  <CustomButton
+                    onPress={formikProps.handleSubmit}
+                    style={{ marginTop: Metrics.base }}
+                    title="Register"
+                  />
+                )}
               </View>
             );
           }}
