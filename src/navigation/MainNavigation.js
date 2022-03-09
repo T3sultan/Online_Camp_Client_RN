@@ -9,6 +9,7 @@ import { platform } from "react-native";
 import SplashScreen from "../screens/auth/SplashScreen";
 import AuthNavigation from "./AuthNavigation";
 import AppNavigation from "./AppNavigation";
+import FlashMessage from "react-native-flash-message";
 
 const Stack = createNativeStackNavigator();
 
@@ -55,6 +56,7 @@ export default function MainNavigation() {
           </Stack.Navigator>
         </SafeAreaView>
       </NavigationContainer>
+      <FlashMessage position="top" />
     </NativeBaseProvider>
   );
 }

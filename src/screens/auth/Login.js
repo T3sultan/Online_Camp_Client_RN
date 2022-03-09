@@ -1,5 +1,5 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import cs from "../../theme/commonstyle";
 import { Colors, Images, Metrics } from "../../theme";
 import { Formik } from "formik";
@@ -7,6 +7,8 @@ import * as Yup from "yup";
 import TextInput from "../../common/Input";
 import CustomText from "../../common/CustomText";
 import CustomButton from "../../common/CustomButton";
+import CustomLoading from "../../common/CustomLoading";
+import { showMessage } from "react-native-flash-message";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -18,6 +20,9 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Login({ navigation }) {
+  useEffect(() => {
+    showMessage({ message: "testing...", type: "success" });
+  }, []);
   return (
     <View style={[cs.container]}>
       <Image source={Images.login} style={styles.imageStyle} />
@@ -56,11 +61,15 @@ export default function Login({ navigation }) {
                 formikKey={"password"}
                 secureTextEntry={true}
               />
-              <CustomButton
-                onPress={formikProps.handleSubmit}
-                style={{ marginTop: Metrics.header }}
-                title="Login"
-              />
+              {formikProps.isSubmitting ? (
+                <CustomLoading />
+              ) : (
+                <CustomButton
+                  onPress={formikProps.handleSubmit}
+                  style={{ marginTop: Metrics.header }}
+                  title="Login"
+                />
+              )}
             </View>
           );
         }}
