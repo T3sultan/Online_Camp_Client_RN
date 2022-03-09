@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import cs from "../../theme/commonstyle";
 import { Colors, Images, Metrics } from "../../theme";
 import { Formik } from "formik";
@@ -16,6 +16,7 @@ import CustomButton from "../../common/CustomButton";
 import API from "../../api";
 import CustomLoading from "../../common/CustomLoading";
 import { showMessage } from "react-native-flash-message";
+import { AuthContext } from "../../context/AuthContext";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().label("Name").required("Name field is empty"),
@@ -32,6 +33,8 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Register({ navigation }) {
+  const { authContext } = useContext(AuthContext);
+  const { register } = authContext;
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={cs.container}>
       <View style={styles.doubleContainer}>
@@ -50,12 +53,13 @@ export default function Register({ navigation }) {
             const registerURL = "auth/register";
             try {
               let res = await API.post(registerURL, values);
+              console.log("res ", res.data);
               action.setSubmitting(false);
               showMessage({
                 message: "Registration Successfully",
                 type: "success",
               });
-              console.log("res ", res.data);
+              register(res.data.token);
             } catch (err) {
               console.log("err ", err.response);
               action.setSubmitting(false);

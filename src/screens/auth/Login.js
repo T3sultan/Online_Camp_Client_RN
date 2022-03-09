@@ -20,9 +20,9 @@ const validationSchema = Yup.object().shape({
 });
 
 export default function Login({ navigation }) {
-  useEffect(() => {
-    showMessage({ message: "testing...", type: "success" });
-  }, []);
+  // useEffect(() => {
+  //   showMessage({ message: "testing...", type: "success" });
+  // }, []);
   return (
     <View style={[cs.container]}>
       <Image source={Images.login} style={styles.imageStyle} />
