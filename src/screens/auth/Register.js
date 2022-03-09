@@ -46,7 +46,7 @@ export default function Register({ navigation }) {
             const registerURL = "auth/register";
             try {
               let res = await API.post(registerURL, values);
-              console.log("res ", res);
+              console.log("res ", res.data);
             } catch (err) {
               console.log("err ", err.response);
             }

@@ -2,6 +2,8 @@
   "expo": {
     "name": "online_cam_client_RN",
     "slug": "online_cam_client_RN",
+    "privacy": "public",
+    "description": "Online Learning Application for Beginner & Advanced",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,9 +15,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
