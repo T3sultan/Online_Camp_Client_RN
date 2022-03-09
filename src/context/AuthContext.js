@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useMemo } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AsyncStorage } from "@react-native-async-storage/async-storage";
 
 //1.creating our auth content
 export const AuthContext = createContext();
