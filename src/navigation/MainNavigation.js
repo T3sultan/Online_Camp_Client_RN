@@ -10,6 +10,7 @@ import SplashScreen from "../screens/auth/SplashScreen";
 import AuthNavigation from "./AuthNavigation";
 import AppNavigation from "./AppNavigation";
 import FlashMessage from "react-native-flash-message";
+import { AuthContext } from "./../context/AuthContext";
 
 const Stack = createNativeStackNavigator();
 
@@ -23,6 +24,9 @@ export default function MainNavigation() {
       setShowSplashScreen(false);
     }, 3000);
   }, []);
+
+  const { a } = useContext(AuthContext);
+  console.log(a);
 
   return (
     <NativeBaseProvider>
