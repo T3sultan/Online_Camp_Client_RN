@@ -11,6 +11,7 @@ import AuthNavigation from "./AuthNavigation";
 import AppNavigation from "./AppNavigation";
 import FlashMessage from "react-native-flash-message";
 import { AuthContext } from "./../context/AuthContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,7 +20,6 @@ export default function MainNavigation() {
   // // const [showSplashScreen, setShowSplashScreen] = useState(true);
   // const isLoading = false;
   const { state, authContext } = useContext(AuthContext);
-
   const { isLoading, userToken } = state;
   // const isLoading = true;
   // useEffect(() => {
@@ -30,6 +30,19 @@ export default function MainNavigation() {
 
   // const { a } = useContext(AuthContext);
   // console.log(a);
+  useEffect(() => {
+    bootstrap();
+  }, []);
+
+  const bootstrap = async () => {
+    try {
+      let token;
+      token = await AsyncStorage.getItem("userToken");
+      authContext.restoreToken(token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <NativeBaseProvider>

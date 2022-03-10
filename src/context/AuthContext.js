@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useMemo } from "react";
-import { AsyncStorage } from "@react-native-async-storage/async-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 //1.creating our auth content
 export const AuthContext = createContext();
@@ -48,7 +48,9 @@ export const AuthProvider = ({ children }) => {
       try {
         dispatch({ type: "SIGN_IN", token });
         await AsyncStorage.setItem("userToken", token);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
     },
     register: async token => {
       try {
