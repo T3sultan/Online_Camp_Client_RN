@@ -17,16 +17,16 @@ const Stack = createNativeStackNavigator();
 
 export default function MainNavigation() {
   // const [userToken, setUserToken] = useState(null);
-  // // const [showSplashScreen, setShowSplashScreen] = useState(true);
+  const [isLoading, setShowSplashScreen] = useState(true);
   // const isLoading = false;
   const { state, authContext } = useContext(AuthContext);
-  const { isLoading, userToken } = state;
+  const { userToken } = state;
   // const isLoading = true;
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setShowSplashScreen(false);
-  //   }, 3000);
-  // }, []);
+  useEffect(() => {
+    setTimeout(() => {
+      setShowSplashScreen(false);
+    }, 3000);
+  }, []);
 
   // const { a } = useContext(AuthContext);
   // console.log(a);
@@ -50,7 +50,13 @@ export default function MainNavigation() {
         <SafeAreaView style={{ flex: 1 }}>
           <StatusBar backgroundColor={Colors.border} />
           <Stack.Navigator>
-            {userToken === null ? (
+            {isLoading ? (
+              <Stack.Screen
+                name="Splash"
+                component={SplashScreen}
+                options={{ headerShown: false }}
+              />
+            ) : userToken === null ? (
               <Stack.Screen
                 options={{
                   headerShown: false,
