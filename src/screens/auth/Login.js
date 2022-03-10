@@ -1,5 +1,5 @@
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import cs from "../../theme/commonstyle";
 import { Colors, Images, Metrics } from "../../theme";
 import { Formik } from "formik";
@@ -9,6 +9,8 @@ import CustomText from "../../common/CustomText";
 import CustomButton from "../../common/CustomButton";
 import CustomLoading from "../../common/CustomLoading";
 import { showMessage } from "react-native-flash-message";
+import API from "../../api";
+import { AuthContext } from "../../context/AuthContext";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -23,13 +25,32 @@ export default function Login({ navigation }) {
   // useEffect(() => {
   //   showMessage({ message: "testing...", type: "success" });
   // }, []);
+
+  const { authContext } = useContext(AuthContext);
+  const { signIn } = authContext;
+
   return (
     <View style={[cs.container]}>
       <Image source={Images.login} style={styles.imageStyle} />
       <Formik
         initialValues={{ email: "", password: "" }}
-        onSubmit={(values, action) => {
+        onSubmit={async (values, action) => {
           console.log({ values });
+          action.setSubmitting(true);
+          const loginUrl = "auth/login";
+          try {
+            let res = await API.post(loginUrl, values);
+            console.log("res", res);
+            action.setSubmitting(false);
+            signIn(res.data.token);
+          } catch (err) {
+            console.log("err", err.response);
+            action.setSubmitting(false);
+            showMessage({
+              message: err.response.data.msg,
+              type: "danger",
+            });
+          }
         }}
         validationSchema={validationSchema}
       >
