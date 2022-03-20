@@ -23,6 +23,9 @@ const CustomButton = ({
   captionText,
   disable,
   fullWidth = false,
+  primary,
+  blue,
+  exploreButton,
 }) => {
   return (
     <TouchableNativeFeedback onPress={onPress}>
@@ -36,6 +39,9 @@ const CustomButton = ({
           secondary && { backgroundColor: Colors.white },
           noBorder && { borderWidth: 0 },
           style,
+          primary && { backgroundColor: Colors.primary },
+          blue && { backgroundColor: Colors.blue },
+          exploreButton && { backgroundColor: Colors.exploreButton },
         ]}
       >
         <CustomText

@@ -14,6 +14,8 @@ const colors = {
   error: "#EF0024",
   blue: "#160DDF",
   black: "#000000",
+  description: "#666666",
+  exploreButton: "#2980B9",
 };
 
 export default colors;

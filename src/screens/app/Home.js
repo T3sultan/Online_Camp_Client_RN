@@ -11,7 +11,7 @@ const Home = () => {
   const { signOut } = authContext;
 
   return (
-    <View style={commonstyle.container}>
+    <View style={[commonstyle.container, { margin: 8 }]}>
       <AppIntro />
     </View>
   );

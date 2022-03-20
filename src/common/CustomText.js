@@ -45,6 +45,7 @@ const CustomText = props => {
     lh,
     style,
     black,
+    description,
   } = props;
   return (
     <RNText
@@ -82,6 +83,7 @@ const CustomText = props => {
         orange && { color: Colors.orange },
         error && { color: Colors.error },
         blue && { color: Colors.blue },
+        description && { color: Colors.description },
 
         //
         underLine && { textDecorationLine: "underline" },
