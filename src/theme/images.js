@@ -8,5 +8,8 @@ const images = {
   add: require("../../assets/icons/add_circle.png"),
   login: require("../../assets/imagesfile/login.png"),
   register: require("../../assets/imagesfile/register.png"),
+  onboarding1: require("../../assets/imagesfile/onboarding/onboarding1.png"),
+  onboarding2: require("../../assets/imagesfile/onboarding/onboarding2.png"),
+  onboarding3: require("../../assets/imagesfile/onboarding/onboarding3.png"),
 };
 export default images;

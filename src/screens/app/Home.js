@@ -1,15 +1,25 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import React, { useContext } from "react";
 import CustomButton from "../../common/CustomButton";
-import { Colors, Metrics } from "../../theme";
+import { Colors, Images, Metrics } from "../../theme";
 import { AuthContext } from "../../context/AuthContext";
+import commonstyle from "../../theme/commonstyle";
+import AppIntro from "../../components/AppIntro";
 
 const Home = () => {
   const { authContext } = useContext(AuthContext);
   const { signOut } = authContext;
+
   return (
-    <View>
+    <View style={commonstyle.container}>
+      <AppIntro />
+    </View>
+  );
+
+  return (
+    <ScrollView>
       <Text>Home</Text>
+      <Text>Description</Text>
       <CustomButton
         onPress={() => {
           signOut();
@@ -17,7 +27,7 @@ const Home = () => {
         style={{ marginTop: Metrics.base, backgroundColor: Colors.primary }}
         title="LOG OUT"
       />
-    </View>
+    </ScrollView>
   );
 };
 
