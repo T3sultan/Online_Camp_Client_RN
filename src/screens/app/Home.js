@@ -1,20 +1,40 @@
 import { StyleSheet, Text, View, ScrollView } from "react-native";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CustomButton from "../../common/CustomButton";
 import { Colors, Images, Metrics } from "../../theme";
 import { AuthContext } from "../../context/AuthContext";
 import commonstyle from "../../theme/commonstyle";
 import AppIntro from "../../components/AppIntro";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Home = () => {
   const { authContext } = useContext(AuthContext);
   const { signOut } = authContext;
+  const [showOnBoarding, setShowOnBoarding] = useState(false);
 
-  return (
-    <View style={[commonstyle.container, { margin: 8 }]}>
-      <AppIntro />
-    </View>
-  );
+  useEffect(() => {
+    checkOnBoarding();
+  }, []);
+
+  const checkOnBoarding = async () => {
+    const isVisited = await AsyncStorage.getItem("visited");
+    if (!isVisited) {
+      setShowOnBoarding(true);
+    }
+    await AsyncStorage.removeItem("visited");
+  };
+
+  if (showOnBoarding) {
+    return (
+      <View style={[commonstyle.container, { margin: 8 }]}>
+        <AppIntro
+          onDone={() => {
+            setShowOnBoarding(false);
+          }}
+        />
+      </View>
+    );
+  }
 
   return (
     <ScrollView>

@@ -1,11 +1,12 @@
 import { StyleSheet, View, Image } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { Colors, Images, Metrics } from "../theme";
 import commonstyle from "../theme/commonstyle";
 import CustomText from "../common/CustomText";
 import { scale } from "react-native-size-matters";
 import CustomButton from "../common/CustomButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const slides = [
   {
@@ -33,7 +34,15 @@ const slides = [
     image: Images.onboarding3,
   },
 ];
-const AppIntro = () => {
+const AppIntro = ({ onDone }) => {
+  useEffect(() => {
+    setFlag();
+  }, []);
+
+  const setFlag = async () => {
+    await AsyncStorage.setItem("visited", "true");
+  };
+
   const renderSlides = ({ item, index }) => {
     return (
       <View>
@@ -67,6 +76,7 @@ const AppIntro = () => {
         </View>
         {index === slides.length - 1 && (
           <CustomButton
+            onPress={onDone}
             style={{
               width: 200,
               alignSelf: "center",
