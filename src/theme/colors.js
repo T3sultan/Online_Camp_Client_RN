@@ -16,6 +16,7 @@ const colors = {
   black: "#000000",
   description: "#666666",
   exploreButton: "#2980B9",
+  orange: "#F2994A",
 };
 
 export default colors;
