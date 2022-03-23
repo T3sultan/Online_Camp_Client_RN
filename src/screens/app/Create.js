@@ -16,6 +16,8 @@ import TagInput from "../../components/TagInput";
 import CustomButton from "../../common/CustomButton";
 import SwitchForm from "./../../common/SwitchForm";
 import { AntDesign } from "@expo/vector-icons";
+import API from "../../api";
+import CustomLoading from "../../common/CustomLoading";
 
 const Create = () => {
   return (
@@ -45,6 +47,16 @@ const Create = () => {
           }}
           onSubmit={(values, action) => {
             console.log("careers", values);
+            action.setSubmitting(true);
+            API.post("onlineCamps", values)
+              .then(res => {
+                console.log("res", res);
+                action.setSubmitting(false);
+              })
+              .catch(err => {
+                console.log(err);
+                action.setSubmitting(false);
+              });
           }}
         >
           {formikProps => (
@@ -154,13 +166,16 @@ const Create = () => {
                   })}
                 </ScrollView>
               </View>
-
-              <CustomButton
-                onPress={formikProps.handleSubmit}
-                exploreButton
-                style={{ marginTop: Metrics.header }}
-                title="Create "
-              />
+              {formikProps.isSubmitting ? (
+                <CustomLoading />
+              ) : (
+                <CustomButton
+                  onPress={formikProps.handleSubmit}
+                  exploreButton
+                  style={{ marginTop: Metrics.header }}
+                  title="Create "
+                />
+              )}
             </View>
           )}
         </Formik>

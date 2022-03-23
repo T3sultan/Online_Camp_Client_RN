@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Modal } from "react-native";
 import React, { useEffect } from "react";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { Colors, Images, Metrics } from "../theme";
@@ -34,7 +34,7 @@ const slides = [
     image: Images.onboarding3,
   },
 ];
-const AppIntro = ({ onDone }) => {
+const AppIntro = ({ visible, toggleModal, onDone }) => {
   useEffect(() => {
     setFlag();
   }, []);
@@ -89,11 +89,22 @@ const AppIntro = ({ onDone }) => {
     );
   };
   return (
-    <AppIntroSlider
-      activeDotStyle={{ backgroundColor: Colors.primary }}
-      data={slides}
-      renderItem={renderSlides}
-    />
+    <Modal
+      visible={true}
+      animationType="slide"
+      // transparent={true}
+      // visible={modalVisible}
+      onRequestClose={() => {
+        Alert.alert("Modal has been closed.");
+        setModalVisible(!modalVisible);
+      }}
+    >
+      <AppIntroSlider
+        activeDotStyle={{ backgroundColor: Colors.primary }}
+        data={slides}
+        renderItem={renderSlides}
+      />
+    </Modal>
   );
 };
 

@@ -24,6 +24,9 @@ const Home = () => {
     await AsyncStorage.removeItem("visited");
   };
 
+  const toggleModal = () => {
+    setShowOnBoarding(!showOnBoarding);
+  };
   if (showOnBoarding) {
     return (
       <View style={[commonstyle.container, { margin: 8 }]}>
@@ -47,6 +50,7 @@ const Home = () => {
         style={{ marginTop: Metrics.base, backgroundColor: Colors.primary }}
         title="LOG OUT"
       />
+      {/* <AppIntro visible={showOnBoarding} toggleModal={toggleModal} /> */}
     </ScrollView>
   );
 };
