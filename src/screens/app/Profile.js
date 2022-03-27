@@ -1,10 +1,18 @@
-import { StyleSheet, View, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import commonstyle from "../../theme/commonstyle";
 import { Colors, Images, Metrics } from "../../theme";
 import CustomText from "../../common/CustomText";
 import API from "../../api";
 import CustomLoading from "../../common/CustomLoading";
+import coverColors from "./../../theme/coverColor";
 
 const Profile = () => {
   const [loading, setLoading] = useState(true);
@@ -19,6 +27,10 @@ const Profile = () => {
     getUserOnlineCamp();
   }, []);
 
+  // useEffect(() => {
+  //   deleteOnlineCamp();
+  // }, []);
+
   const getUserData = async () => {
     const response = await API.get("auth/profile");
     setUserData(response.data.data);
@@ -32,10 +44,45 @@ const Profile = () => {
     setOnlineCampLoading(false);
     console.log("onlineCamps", response.data);
   };
+  // const deleteOnlineCamp = ({ item }) => {};
 
   if (loading) {
     return <CustomLoading />;
   }
+  const renderItem = ({ item, index }) => {
+    return (
+      <ScrollView
+        style={{
+          borderRadius: Metrics.halfBase,
+          padding: Metrics.base,
+          backgroundColor: item.coverColor.code,
+          width: Metrics.screenWidth * 0.4,
+          margin: Metrics.start,
+        }}
+      >
+        <CustomText numberOfLines={2} white title centered>
+          {item.title}
+        </CustomText>
+        <TouchableOpacity
+          onPress={() => {
+            API.delete(`onlineCamps/${item._id}`).then(res => {
+              console.log("delete", res);
+              if (res.status === 200) {
+                const newList = onlineCampData.filter(
+                  value => value._id !== item._id
+                );
+                setOnlineCampData(newList);
+              }
+            });
+          }}
+          style={{ alignSelf: "flex-end", marginTop: Metrics.halfBase }}
+        >
+          <Image source={Images.delete} />
+        </TouchableOpacity>
+      </ScrollView>
+    );
+  };
+
   const renderOnlineCamp = () => {
     if (onlineCampData.length === 0) {
       return (
@@ -53,6 +100,22 @@ const Profile = () => {
         </View>
       );
     }
+    return (
+      <View style={{ margin: Metrics.base }}>
+        <CustomText primary title bold>
+          My Online Camps
+        </CustomText>
+        <FlatList
+          columnWrapperStyle={{ justifyContent: "space-between" }}
+          numColumns={2}
+          data={onlineCampData}
+          keyExtractor={(item, index) => index.toString()}
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingVertical: Metrics.base }}
+          renderItem={renderItem}
+        />
+      </View>
+    );
   };
 
   return (

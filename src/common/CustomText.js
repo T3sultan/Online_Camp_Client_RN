@@ -46,6 +46,7 @@ const CustomText = props => {
     style,
     black,
     description,
+    numberOfLines,
   } = props;
   return (
     <RNText
@@ -97,6 +98,7 @@ const CustomText = props => {
         lh && { lineHeight: lh },
         style,
       ]}
+      numberOfLines={numberOfLines}
     >
       {children}
     </RNText>
