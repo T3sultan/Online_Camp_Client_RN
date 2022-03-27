@@ -11,5 +11,6 @@ const images = {
   onboarding1: require("../../assets/imagesfile/onboarding/onboarding1.png"),
   onboarding2: require("../../assets/imagesfile/onboarding/onboarding2.jpg"),
   onboarding3: require("../../assets/imagesfile/onboarding/onboarding3.jpg"),
+  empty: require("../../assets/imagesfile/error.png"),
 };
 export default images;
