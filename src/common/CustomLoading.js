@@ -4,7 +4,7 @@ import { Colors } from "../theme";
 
 const CustomLoading = ({ size = "large" }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <ActivityIndicator color={Colors.primary} size={size} />
     </View>
   );
@@ -12,4 +12,10 @@ const CustomLoading = ({ size = "large" }) => {
 
 export default CustomLoading;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+});
