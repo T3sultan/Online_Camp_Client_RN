@@ -27,10 +27,6 @@ const Profile = () => {
     getUserOnlineCamp();
   }, []);
 
-  // useEffect(() => {
-  //   deleteOnlineCamp();
-  // }, []);
-
   const getUserData = async () => {
     const response = await API.get("auth/profile");
     setUserData(response.data.data);
@@ -125,7 +121,9 @@ const Profile = () => {
           My Profile
         </CustomText>
         <View style={styles.secondWrapper}>
-          <CustomText white>{userData.name}</CustomText>
+          <CustomText headLine white>
+            {userData.name}
+          </CustomText>
           <CustomText white>{userData.email}</CustomText>
         </View>
         <View style={styles.description}>

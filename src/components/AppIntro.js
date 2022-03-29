@@ -76,7 +76,7 @@ const AppIntro = ({ visible, toggleModal, onDone }) => {
         </View>
         {index === slides.length - 1 && (
           <CustomButton
-            onPress={onDone}
+            onPress={toggleModal}
             style={{
               width: 200,
               alignSelf: "center",
@@ -90,10 +90,10 @@ const AppIntro = ({ visible, toggleModal, onDone }) => {
   };
   return (
     <Modal
-      visible={true}
+      visible={visible}
       animationType="slide"
       // transparent={true}
-      // visible={modalVisible}
+      // // visible={modalVisible}
       onRequestClose={() => {
         Alert.alert("Modal has been closed.");
         setModalVisible(!modalVisible);
