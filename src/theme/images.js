@@ -16,5 +16,7 @@ const images = {
   location: require("../../assets/icons/location_on.png"),
   calendar: require("../../assets/icons/calendar.png"),
   teacher: require("../../assets/icons/teacher.png"),
+  love: require("../../assets/icons/love.png"),
+  cross: require("../../assets/icons/cross.png"),
 };
 export default images;

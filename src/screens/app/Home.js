@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import { StyleSheet, Text, View, ScrollView, Image, Modal } from "react-native";
 import React, { useContext, useEffect, useState } from "react";
 import CustomButton from "../../common/CustomButton";
 import { Colors, Images, Metrics } from "../../theme";
@@ -17,6 +17,21 @@ const Home = () => {
   const [showOnBoarding, setShowOnBoarding] = useState(false);
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalVisibleSuccess, setModalVisibleSuccess] = useState(false);
+  const [modalVisibleFailure, setModalVisibleFailure] = useState(false);
+
+  const toggleModalPopupSuccess = () => {
+    setModalVisibleSuccess(true);
+    setTimeout(() => {
+      setModalVisibleSuccess(false);
+    }, 1000);
+  };
+  const toggleModalPopupFailure = () => {
+    setModalVisibleFailure(true);
+    setTimeout(() => {
+      setModalVisibleFailure(false);
+    }, 1000);
+  };
 
   useEffect(() => {
     fetchOnlineCamp();
@@ -121,7 +136,7 @@ const Home = () => {
           </View>
         </View>
         <View style={styles.descriptionStyle}>
-          <CustomText title bold grey>
+          <CustomText title bold black>
             {card.title}
           </CustomText>
           <View style={{ margin: Metrics.start }}>
@@ -141,13 +156,60 @@ const Home = () => {
     API.post("onlineCampLogs", {
       onlineCamp: item._id,
       status: direction === "left" ? "reject" : "save",
+      status: direction === "up" ? "reject" : "save",
     }).then(res => {
       console.log("res", res);
+      if (direction === "right") {
+        toggleModalPopupSuccess();
+      } else if (direction === "left") {
+        toggleModalPopupFailure();
+      } else if (direction === "down") {
+        toggleModalPopupSuccess();
+      } else if (direction === "up") {
+        toggleModalPopupFailure();
+      }
     });
   };
 
   return (
     <View style={commonstyle.container}>
+      <View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisibleSuccess}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <View style={styles.loveStyle}>
+                <Image source={Images.love} />
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </View>
+
+      <View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisibleFailure}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+          }}
+        >
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <View style={styles.crossStyle}>
+                <Image source={Images.cross} />
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </View>
       <CustomText centered display bold primary>
         ONLINE CAMPS
       </CustomText>
@@ -155,24 +217,26 @@ const Home = () => {
       <Swiper
         onSwipedLeft={(index, item) => onSwiped("left", index, item)}
         onSwipedRight={(index, item) => onSwiped("right", index, item)}
+        onSwipedUp={(index, item) => onSwiped("up", index, item)}
+        onSwipedDown={(index, item) => onSwiped("down", index, item)}
         cards={list}
         cardIndex={0}
         renderCard={renderCard}
         stackSize={10}
         stackSeparation={13}
         backgroundColor={Colors.lightGrey}
-        verticalSwipe={false}
+        // verticalSwipe={false}
         containerStyle={{ position: "absolute" }}
       />
 
       <AppIntro visible={showOnBoarding} toggleModal={toggleModal} />
-      <CustomButton
+      {/* <CustomButton
         onPress={() => {
           signOut();
         }}
         style={{ marginTop: Metrics.base, backgroundColor: Colors.primary }}
         title="LOG OUT"
-      />
+      /> */}
     </View>
   );
 };
@@ -229,5 +293,40 @@ const styles = StyleSheet.create({
   descriptionStyle: {
     marginTop: Metrics.doubleBase,
     margin: Metrics.base,
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    alignItems: "center",
+    shadowColor: Colors.grey,
+    shadowOffset: {
+      width: 0,
+      height: 0.5,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 1,
+    elevation: 3,
+  },
+  crossStyle: {
+    backgroundColor: Colors.error,
+    height: 150,
+    width: 150,
+    borderRadius: Metrics.start,
+
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  loveStyle: {
+    backgroundColor: Colors.primary,
+    height: 150,
+    width: 150,
+    borderRadius: Metrics.start,
+
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
