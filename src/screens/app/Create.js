@@ -38,8 +38,8 @@ const Create = () => {
             email: "",
             contact: "",
             website: "",
-            isScholarship: false,
-            jobReady: false,
+            isScholarship: true,
+            jobReady: true,
             coverColor: {
               name: "orange",
               code: Colors.orange,

@@ -75,13 +75,13 @@ const Home = () => {
           style={{
             paddingTop: Metrics.header,
             backgroundColor: card.coverColor.code,
-            paddingBottom: Metrics.doubleBase,
+            paddingBottom: Metrics.base,
             borderTopLeftRadius: Metrics.header,
             borderBottomRightRadius: Metrics.header,
           }}
         >
           <View>
-            <CustomText centered display bold white>
+            <CustomText centered mega bold white>
               {card.title}
             </CustomText>
             <View style={styles.secondCard}>
@@ -94,10 +94,40 @@ const Home = () => {
               <View style={styles.cardTeacher}>
                 <Image source={Images.teacher} />
                 <CustomText white style={{ marginLeft: Metrics.start }}>
-                  Tipu Sultan
+                  {card.user.name}
                 </CustomText>
               </View>
             </View>
+          </View>
+
+          <View style={styles.cardItem}>
+            {card.jobReady && (
+              <View style={styles.buttonContainer}>
+                <CustomText caption white>
+                  Job Ready
+                </CustomText>
+              </View>
+            )}
+
+            {card.isScholarship && (
+              <View
+                style={[styles.buttonContainer, { marginLeft: Metrics.start }]}
+              >
+                <CustomText caption white>
+                  Scholarship
+                </CustomText>
+              </View>
+            )}
+          </View>
+        </View>
+        <View style={styles.descriptionStyle}>
+          <CustomText title bold grey>
+            {card.title}
+          </CustomText>
+          <View style={{ margin: Metrics.start }}>
+            <CustomText caption boldRegular>
+              {card.description}
+            </CustomText>
           </View>
         </View>
       </View>
@@ -108,6 +138,12 @@ const Home = () => {
   }
   const onSwiped = (direction, index, item) => {
     console.log(direction, index, item);
+    API.post("onlineCampLogs", {
+      onlineCamp: item._id,
+      status: direction === "left" ? "reject" : "save",
+    }).then(res => {
+      console.log("res", res);
+    });
   };
 
   return (
@@ -123,10 +159,10 @@ const Home = () => {
         cardIndex={0}
         renderCard={renderCard}
         stackSize={10}
-        stackSeparation={15}
+        stackSeparation={13}
         backgroundColor={Colors.lightGrey}
         verticalSwipe={false}
-        // containerStyle={{ position: "relative" }}
+        containerStyle={{ position: "absolute" }}
       />
 
       <AppIntro visible={showOnBoarding} toggleModal={toggleModal} />
@@ -151,6 +187,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: Colors.lightGrey,
     backgroundColor: Colors.white,
+    borderTopLeftRadius: Metrics.base,
+    borderBottomRightRadius: Metrics.doubleBase,
   },
   cardInside: {
     flexDirection: "row",
@@ -173,5 +211,23 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginLeft: Metrics.base,
+  },
+  buttonContainer: {
+    alignSelf: "flex-end",
+    marginTop: Metrics.base,
+    borderColor: Colors.white,
+    borderWidth: 1,
+    borderRadius: Metrics.baseDouble,
+    padding: Metrics.start,
+    paddingHorizontal: Metrics.base,
+  },
+  cardItem: {
+    alignSelf: "flex-end",
+    flexDirection: "row",
+    marginRight: Metrics.doubleBase,
+  },
+  descriptionStyle: {
+    marginTop: Metrics.doubleBase,
+    margin: Metrics.base,
   },
 });
