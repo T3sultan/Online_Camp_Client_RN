@@ -59,6 +59,7 @@ const Profile = () => {
         <CustomText numberOfLines={2} white title centered>
           {item.title}
         </CustomText>
+        <CustomText body>{item.website}</CustomText>
         <TouchableOpacity
           onPress={() => {
             API.delete(`onlineCamps/${item._id}`).then(res => {
