@@ -8,11 +8,12 @@ import BookMark from "../screens/app/BookMark";
 import Create from "../screens/app/Create";
 import Profile from "../screens/app/Profile";
 import { Images } from "../theme";
+import BookMarkDetails from "../screens/app/BookMarkDetails";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-const AppNavigation = () => {
+function HomeTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -60,6 +61,28 @@ const AppNavigation = () => {
       />
     </Tab.Navigator>
   );
-};
+}
+// const AppNavigation = () => {
+//   function HomeTabs (){
 
-export default AppNavigation;
+//   }
+
+// };
+
+export default function AuthNavigation() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="HomeTabs"
+        component={HomeTabs}
+        options={{ headerShown: false }}
+      />
+      {/* <Stack.Screen name="ProfileEdit" component={ProfileEdit} options={{headerShown:false}} /> */}
+      <Stack.Screen
+        name="BookMarkDetails"
+        component={BookMarkDetails}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
+  );
+}

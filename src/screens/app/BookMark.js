@@ -13,7 +13,7 @@ import { Metrics, Images, Colors } from "../../theme";
 import CustomText from "../../common/CustomText";
 import CustomLoading from "../../common/CustomLoading";
 
-const BookMark = () => {
+const BookMark = ({ navigation }) => {
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +39,7 @@ const BookMark = () => {
   }
   const renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("BookMarkDetails")}>
         <View style={styles.card}>
           <View style={styles.cardInside}>
             <Image source={Images.location} />
