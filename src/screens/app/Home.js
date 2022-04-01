@@ -224,19 +224,24 @@ const Home = () => {
         renderCard={renderCard}
         stackSize={10}
         stackSeparation={13}
-        backgroundColor={Colors.lightGrey}
+        backgroundColor={Colors.white}
         // verticalSwipe={false}
         containerStyle={{ position: "absolute" }}
       />
-
-      <AppIntro visible={showOnBoarding} toggleModal={toggleModal} />
-      {/* <CustomButton
+      <CustomButton
         onPress={() => {
           signOut();
         }}
-        style={{ marginTop: Metrics.base, backgroundColor: Colors.primary }}
+        style={{
+          // marginTop: Metrics.base,
+          backgroundColor: Colors.white,
+          marginLeft: Metrics.base,
+          marginRight: Metrics.base,
+        }}
         title="LOG OUT"
-      /> */}
+      />
+
+      <AppIntro visible={showOnBoarding} toggleModal={toggleModal} />
     </View>
   );
 };
@@ -249,10 +254,11 @@ const styles = StyleSheet.create({
     height: "90%",
     borderRadius: Metrics.start,
     borderWidth: 2,
-    borderColor: Colors.lightGrey,
+    borderColor: Colors.border,
     backgroundColor: Colors.white,
     borderTopLeftRadius: Metrics.base,
     borderBottomRightRadius: Metrics.doubleBase,
+    marginTop: Metrics.base,
   },
   cardInside: {
     flexDirection: "row",
