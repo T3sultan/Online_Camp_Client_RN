@@ -13,7 +13,10 @@ import commonstyle from "../../theme/commonstyle";
 const BookMarkDetails = ({ route, navigation }) => {
   const { card } = route.params;
   return (
-    <ScrollView style={commonstyle.container}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      style={commonstyle.container}
+    >
       <View
         style={{
           backgroundColor: card.coverColor.code,
@@ -50,15 +53,15 @@ const BookMarkDetails = ({ route, navigation }) => {
               </CustomText>
             </View>
 
-            {/* {card.jobReady && ( */}
-            <View style={styles.buttonContainer}>
-              <CustomText caption white>
-                Job Ready
-              </CustomText>
-            </View>
-            {/* )} */}
+            {card.jobReady && (
+              <View style={styles.buttonContainer}>
+                <CustomText caption white>
+                  Job Ready
+                </CustomText>
+              </View>
+            )}
 
-            {/* {card.isScholarship && (
+            {card.isScholarship && (
               <View
                 style={[styles.buttonContainer, { marginLeft: Metrics.start }]}
               >
@@ -66,8 +69,26 @@ const BookMarkDetails = ({ route, navigation }) => {
                   Scholarship
                 </CustomText>
               </View>
-            )} */}
+            )}
           </View>
+        </View>
+      </View>
+      <View style={styles.detailsStyle}>
+        <View style={styles.locationStyle}>
+          <Image source={Images.location} />
+          <CustomText style={styles.textStyle} caption bold>
+            {card.address}
+          </CustomText>
+        </View>
+        <View style={styles.title}>
+          <CustomText title bold>
+            {card.title}
+          </CustomText>
+        </View>
+        <View style={{ marginTop: Metrics.start }}>
+          <CustomText midGrey caption>
+            {card.description}
+          </CustomText>
         </View>
       </View>
     </ScrollView>
@@ -96,7 +117,6 @@ const styles = StyleSheet.create({
     marginLeft: Metrics.base,
   },
   buttonContainer: {
-    // alignSelf: "flex-end",
     marginTop: Metrics.base,
     borderColor: Colors.white,
     borderWidth: 1,
@@ -110,10 +130,21 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   TkContainer: {
-    // alignSelf: "flex-end",
     alignItems: "center",
     marginTop: Metrics.base,
     padding: Metrics.start,
     paddingHorizontal: Metrics.base,
+  },
+  detailsStyle: {
+    margin: Metrics.base,
+  },
+  locationStyle: {
+    flexDirection: "row",
+  },
+  textStyle: {
+    marginLeft: Metrics.halfBase,
+  },
+  title: {
+    marginTop: Metrics.base,
   },
 });

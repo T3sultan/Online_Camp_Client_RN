@@ -222,7 +222,7 @@ const Home = () => {
         cards={list}
         cardIndex={0}
         renderCard={renderCard}
-        stackSize={10}
+        stackSize={20}
         stackSeparation={13}
         backgroundColor={Colors.white}
         // verticalSwipe={false}
