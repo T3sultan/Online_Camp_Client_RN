@@ -39,7 +39,9 @@ const BookMark = ({ navigation }) => {
   }
   const renderItem = ({ item, index }) => {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate("BookMarkDetails")}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("BookMarkDetails", { card: item })}
+      >
         <View style={styles.card}>
           <View style={styles.cardInside}>
             <Image source={Images.location} />

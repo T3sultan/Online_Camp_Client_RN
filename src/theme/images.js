@@ -18,5 +18,6 @@ const images = {
   teacher: require("../../assets/icons/teacher.png"),
   love: require("../../assets/icons/love.png"),
   cross: require("../../assets/icons/cross.png"),
+  backArrow: require("../../assets/icons/backWhite.png"),
 };
 export default images;
