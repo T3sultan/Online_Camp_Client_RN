@@ -9,6 +9,12 @@ import React from "react";
 import CustomText from "../../common/CustomText";
 import { Colors, Images, Metrics } from "../../theme";
 import commonstyle from "../../theme/commonstyle";
+import {
+  MaterialIcons,
+  Foundation,
+  AntDesign,
+  Entypo,
+} from "@expo/vector-icons";
 
 const BookMarkDetails = ({ route, navigation }) => {
   const { card } = route.params;
@@ -81,14 +87,96 @@ const BookMarkDetails = ({ route, navigation }) => {
           </CustomText>
         </View>
         <View style={styles.title}>
-          <CustomText title bold>
-            {card.title}
-          </CustomText>
+          <View style={{ flexDirection: "row" }}>
+            <MaterialIcons name="settings-display" size={24} color="#18B18D" />
+            <CustomText style={{ marginLeft: Metrics.start }} title bold>
+              {card.title}
+            </CustomText>
+          </View>
         </View>
         <View style={{ marginTop: Metrics.start }}>
           <CustomText midGrey caption>
             {card.description}
           </CustomText>
+        </View>
+        <View>
+          <View style={styles.title}>
+            <View style={{ flexDirection: "row" }}>
+              <AntDesign name="contacts" size={24} color="#18B18D" />
+              <CustomText style={{ marginLeft: Metrics.start }} title bold>
+                Contact
+              </CustomText>
+            </View>
+
+            <View style={{ flexDirection: "row" }}>
+              <View style={styles.contactStyle}>
+                <Image source={Images.phone} />
+                <CustomText style={{ marginLeft: Metrics.start }} midGrey>
+                  {card.contact}
+                </CustomText>
+              </View>
+              <View style={styles.contactStyle1}>
+                <MaterialIcons name="email" size={24} color="#18B18D" />
+                <CustomText style={{ marginLeft: Metrics.start }} midGrey>
+                  {card.email}
+                </CustomText>
+              </View>
+            </View>
+            <View style={styles.contactStyle}>
+              <Foundation name="web" size={24} color="#18B18D" />
+              <CustomText style={{ marginLeft: Metrics.start }} midGrey>
+                {card.website}
+              </CustomText>
+            </View>
+            <View style={styles.contactStyle}>
+              <Foundation name="web" size={24} color="#18B18D" />
+              <CustomText style={{ marginLeft: Metrics.start }} midGrey>
+                {card.website}
+              </CustomText>
+            </View>
+            <View style={styles.title}>
+              <View style={{ flexDirection: "row" }}>
+                <Entypo name="address" size={24} color="#18B18D" />
+                <CustomText style={{ marginLeft: Metrics.start }} title bold>
+                  Address
+                </CustomText>
+              </View>
+              <View style={{ marginTop: Metrics.start }}>
+                <CustomText style={{ marginLeft: Metrics.start }} midGrey>
+                  {card.address}
+                </CustomText>
+              </View>
+            </View>
+            <View style={styles.title}>
+              <View style={{ flexDirection: "row" }}>
+                <MaterialIcons
+                  name="cast-for-education"
+                  size={24}
+                  color="#18B18D"
+                />
+                <CustomText style={{ marginLeft: Metrics.start }} title bold>
+                  Careers
+                </CustomText>
+              </View>
+              <View style={{ marginTop: Metrics.start }}>
+                <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+                  {card.careers.map((careers, index) => {
+                    return (
+                      <View key={index} style={styles.cardCareers}>
+                        <CustomText
+                          caption
+                          white
+                          style={styles.careersTextStyle}
+                        >
+                          {`${careers}`}
+                        </CustomText>
+                      </View>
+                    );
+                  })}
+                </View>
+              </View>
+            </View>
+          </View>
         </View>
       </View>
     </ScrollView>
@@ -146,5 +234,28 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: Metrics.base,
+  },
+  contactStyle: {
+    marginTop: Metrics.base,
+    flexDirection: "row",
+  },
+  contactStyle1: {
+    marginTop: Metrics.base,
+    flexDirection: "row",
+    marginLeft: Metrics.base,
+  },
+  cardCareers: {
+    marginTop: Metrics.halfBase,
+    backgroundColor: Colors.primary,
+    borderColor: Colors.primary,
+    borderWidth: 1,
+    borderRadius: Metrics.base,
+    padding: Metrics.start,
+    paddingHorizontal: Metrics.base,
+    marginRight: Metrics.start,
+  },
+  careersTextStyle: {
+    lineHeight: Metrics.base,
+    padding: Metrics.start,
   },
 });

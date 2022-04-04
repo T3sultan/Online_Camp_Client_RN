@@ -19,5 +19,7 @@ const images = {
   love: require("../../assets/icons/love.png"),
   cross: require("../../assets/icons/cross.png"),
   backArrow: require("../../assets/icons/backWhite.png"),
+  phone: require("../../assets/icons/phoneBlue.png"),
+  email: require("../../assets/icons/messageBlue.png"),
 };
 export default images;
