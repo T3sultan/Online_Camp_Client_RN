@@ -13,8 +13,9 @@ import CustomText from "../../common/CustomText";
 import API from "../../api";
 import CustomLoading from "../../common/CustomLoading";
 import coverColors from "./../../theme/coverColor";
+import { Ionicons } from "@expo/vector-icons";
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [onlineCampLoading, setOnlineCampLoading] = useState(true);
   const [userData, setUserData] = useState(null);
@@ -118,9 +119,25 @@ const Profile = () => {
   return (
     <View style={commonstyle.container}>
       <View style={styles.wrapper}>
-        <CustomText white display centered>
-          My Profile
-        </CustomText>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
+          <CustomText white display centered>
+            My Profile
+          </CustomText>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("EditeProfile");
+            }}
+          >
+            <Ionicons name="person-add" size={24} color="white" />
+          </TouchableOpacity>
+        </View>
+
         <View style={styles.secondWrapper}>
           <CustomText headLine white>
             {userData.name}

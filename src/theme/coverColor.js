@@ -47,6 +47,38 @@ const coverColors = [
     name: "Maroon",
     code: "#800000",
   },
+  {
+    name: "Green-1",
+    code: "#223828",
+  },
+  {
+    name: "lightWhite",
+    code: "#e1ede4",
+  },
+  {
+    name: "blue-2",
+    code: "#673cc9",
+  },
+  {
+    name: "DarkSlateBlue",
+    code: "#483D8B",
+  },
+  {
+    name: "LimeGreen",
+    code: "#32CD32",
+  },
+  {
+    name: "PaleGreen",
+    code: "#98FB98",
+  },
+  {
+    name: "SkyBlue",
+    code: "#87CEEB",
+  },
+  {
+    name: "DarkSlateGray",
+    code: "#2F4F4F",
+  },
 ];
 
 export default coverColors;

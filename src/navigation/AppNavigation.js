@@ -9,6 +9,7 @@ import Create from "../screens/app/Create";
 import Profile from "../screens/app/Profile";
 import { Images } from "../theme";
 import BookMarkDetails from "../screens/app/BookMarkDetails";
+import EditeProfile from "../screens/app/EditeProfile";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -81,6 +82,11 @@ export default function AuthNavigation() {
       <Stack.Screen
         name="BookMarkDetails"
         component={BookMarkDetails}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="EditeProfile"
+        component={EditeProfile}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

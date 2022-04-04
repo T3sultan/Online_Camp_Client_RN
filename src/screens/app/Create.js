@@ -112,27 +112,6 @@ const Create = () => {
                 details="Do you provide scholarship to the camp students ?"
               />
 
-              {/* <View style={styles.switchFrom}>
-                <View style={styles.wrapperFrom}>
-                  <CustomText style={{ marginBottom: Metrics.start }} bold>
-                    Job Ready
-                  </CustomText>
-                  <CustomText lh={20} boldRegular caption>
-                    Will online camp students become job ready after completing
-                    ?
-                  </CustomText>
-                </View>
-                <Switch
-                  colorScheme="primary"
-                  offTrackColor="rose.200"
-                  onTrackColor="lime.200"
-                  size="lg"
-                  onValueChange={value => {
-                    formikProps.setFieldValue("jobReady", value);
-                  }}
-                  value={formikProps.values["jobReady"]}
-                />
-              </View> */}
               <View style={styles.textStyle}>
                 <CustomText bold>Select your cover color</CustomText>
                 <ScrollView
