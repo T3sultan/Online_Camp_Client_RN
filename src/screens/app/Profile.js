@@ -131,7 +131,11 @@ const Profile = ({ navigation }) => {
           </CustomText>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate("EditeProfile");
+              navigation.navigate("EditeProfile", {
+                email: userData.email,
+                bio: userData.bio,
+                name: userData.name,
+              });
             }}
           >
             <Ionicons name="person-add" size={24} color="white" />

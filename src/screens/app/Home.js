@@ -152,20 +152,15 @@ const Home = () => {
     return <CustomLoading />;
   }
   const onSwiped = (direction, index, item) => {
-    console.log(direction, index, item);
+    // console.log(direction, index, item);
     API.post("onlineCampLogs", {
       onlineCamp: item._id,
       status: direction === "left" ? "reject" : "save",
-      status: direction === "up" ? "reject" : "save",
     }).then(res => {
       console.log("res", res);
       if (direction === "right") {
         toggleModalPopupSuccess();
       } else if (direction === "left") {
-        toggleModalPopupFailure();
-      } else if (direction === "down") {
-        toggleModalPopupSuccess();
-      } else if (direction === "up") {
         toggleModalPopupFailure();
       }
     });
@@ -217,8 +212,6 @@ const Home = () => {
       <Swiper
         onSwipedLeft={(index, item) => onSwiped("left", index, item)}
         onSwipedRight={(index, item) => onSwiped("right", index, item)}
-        onSwipedUp={(index, item) => onSwiped("up", index, item)}
-        onSwipedDown={(index, item) => onSwiped("down", index, item)}
         cards={list}
         cardIndex={0}
         renderCard={renderCard}
